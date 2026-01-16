@@ -7,7 +7,7 @@
   <title>Budgeto - Expense Tracker</title>
 
   <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="manifest" href="manifest.json" />
 
   <!-- Theme Color -->
   <meta name="theme-color" content="#ec4899" />
@@ -16,12 +16,23 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Budgeto" />
-  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+  <!-- Apple Touch Icons - Multiple sizes for best compatibility -->
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180x180.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="icons/icon-96x96.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="icons/icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="60x60" href="icons/icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="icons/icon-72x72.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png" />
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
 
   <!-- Tailwind CSS (스타일링 도구) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -965,8 +976,8 @@
       return (
         <div
           className={`min-h-screen font-sans transition-colors duration-300 ${isDark
-              ? "bg-slate-900 text-slate-100"
-              : "bg-slate-50 text-slate-800"
+            ? "bg-slate-900 text-slate-100"
+            : "bg-slate-50 text-slate-800"
             }`}
         >
           <div
@@ -986,8 +997,8 @@
             {/* Header with Rainbow Gradient */}
             <div
               className={`text-white p-6 rounded-b-[2.5rem] shadow-xl z-10 transition-colors duration-300 ${isDark
-                  ? "bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600"
-                  : "bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400"
+                ? "bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600"
+                : "bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400"
                 }`}
             >
               <div className="flex justify-between items-center mb-6">
@@ -1126,8 +1137,8 @@
               <button
                 onClick={() => setActiveTab("transactions")}
                 className={`flex-1 pb-3 text-sm font-bold flex items-center justify-center gap-2 border-b-2 transition-all ${activeTab === "transactions"
-                    ? "border-pink-500 text-pink-600"
-                    : "border-transparent text-slate-400"
+                  ? "border-pink-500 text-pink-600"
+                  : "border-transparent text-slate-400"
                   }`}
               >
                 <List size={18} /> {t("transactions")}
@@ -1135,8 +1146,8 @@
               <button
                 onClick={() => setActiveTab("insights")}
                 className={`flex-1 pb-3 text-sm font-bold flex items-center justify-center gap-2 border-b-2 transition-all ${activeTab === "insights"
-                    ? "border-violet-500 text-violet-600"
-                    : "border-transparent text-slate-400"
+                  ? "border-violet-500 text-violet-600"
+                  : "border-transparent text-slate-400"
                   }`}
               >
                 <PieChart size={18} /> {t("insights")}
@@ -1153,8 +1164,8 @@
                   {/* Monthly Summary Card */}
                   <div
                     className={`mb-6 p-4 rounded-3xl border shadow-sm flex justify-between items-center ${isDark
-                        ? "bg-slate-800 border-slate-700"
-                        : "bg-slate-50 border-slate-100"
+                      ? "bg-slate-800 border-slate-700"
+                      : "bg-slate-50 border-slate-100"
                       }`}
                   >
                     <div>
@@ -1183,8 +1194,8 @@
                       </p>
                       <p
                         className={`text-lg font-black ${monthlyIncomeNum - monthlyExpenseNum >= 0
-                            ? "text-emerald-500"
-                            : "text-rose-500"
+                          ? "text-emerald-500"
+                          : "text-rose-500"
                           }`}
                       >
                         {monthlyIncomeNum - monthlyExpenseNum >= 0 ? "+" : ""}
@@ -1234,15 +1245,15 @@
                           <li
                             key={transaction.id}
                             className={`group border p-4 rounded-2xl shadow-sm flex justify-between items-center transition-all duration-300 ${isDark
-                                ? "bg-slate-800 border-slate-700 hover:border-pink-500/30"
-                                : "bg-slate-50 hover:bg-white border-transparent hover:border-pink-100 hover:shadow-lg hover:shadow-pink-500/10"
+                              ? "bg-slate-800 border-slate-700 hover:border-pink-500/30"
+                              : "bg-slate-50 hover:bg-white border-transparent hover:border-pink-100 hover:shadow-lg hover:shadow-pink-500/10"
                               }`}
                           >
                             <div className="flex items-center gap-4">
                               <div
                                 className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm ${isDark
-                                    ? "bg-slate-700 text-slate-300"
-                                    : `${catDetails.bg} ${catDetails.color}`
+                                  ? "bg-slate-700 text-slate-300"
+                                  : `${catDetails.bg} ${catDetails.color}`
                                   }`}
                               >
                                 <Icon size={20} />
@@ -1250,22 +1261,22 @@
                               <div>
                                 <p
                                   className={`font-bold ${isDark
-                                      ? "text-slate-200"
-                                      : "text-slate-700"
+                                    ? "text-slate-200"
+                                    : "text-slate-700"
                                     }`}
                                 >
                                   {transaction.text}
                                 </p>
                                 <div
                                   className={`flex items-center gap-2 text-xs ${isDark
-                                      ? "text-slate-500"
-                                      : "text-slate-400"
+                                    ? "text-slate-500"
+                                    : "text-slate-400"
                                     }`}
                                 >
                                   <span
                                     className={`capitalize px-2 py-0.5 rounded-full border ${isDark
-                                        ? "bg-slate-700 border-slate-600 text-slate-300"
-                                        : "bg-white border-slate-100"
+                                      ? "bg-slate-700 border-slate-600 text-slate-300"
+                                      : "bg-white border-slate-100"
                                       }`}
                                   >
                                     {catDetails.label}
@@ -1277,8 +1288,8 @@
                             <div className="flex items-center gap-3">
                               <span
                                 className={`font-bold ${transaction.type === "income"
-                                    ? "text-emerald-500"
-                                    : "text-rose-500"
+                                  ? "text-emerald-500"
+                                  : "text-rose-500"
                                   }`}
                               >
                                 {transaction.type === "income" ? "+" : "-"}฿
@@ -1289,8 +1300,8 @@
                                   deleteTransaction(transaction.id)
                                 }
                                 className={`transition-colors p-2 ${isDark
-                                    ? "text-slate-600 hover:text-rose-400"
-                                    : "text-slate-300 hover:text-rose-500"
+                                  ? "text-slate-600 hover:text-rose-400"
+                                  : "text-slate-300 hover:text-rose-500"
                                   }`}
                               >
                                 <Trash2 size={16} />
@@ -1306,8 +1317,8 @@
                 <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
                   <div
                     className={`p-6 rounded-3xl shadow-lg border ${isDark
-                        ? "bg-slate-800 border-slate-700"
-                        : "bg-white border-slate-100/50"
+                      ? "bg-slate-800 border-slate-700"
+                      : "bg-white border-slate-100/50"
                       }`}
                   >
                     <h3
@@ -1321,15 +1332,15 @@
                   <div className="grid grid-cols-2 gap-4">
                     <div
                       className={`p-5 rounded-3xl border flex flex-col justify-between ${isDark
-                          ? "bg-slate-800 border-slate-700"
-                          : "bg-rose-50/50 border-rose-100"
+                        ? "bg-slate-800 border-slate-700"
+                        : "bg-rose-50/50 border-rose-100"
                         }`}
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div
                           className={`p-2.5 rounded-xl shadow-sm ${isDark
-                              ? "bg-slate-700 text-rose-400"
-                              : "bg-white text-rose-500"
+                            ? "bg-slate-700 text-rose-400"
+                            : "bg-white text-rose-500"
                             }`}
                         >
                           <AlertCircle size={20} />
@@ -1355,15 +1366,15 @@
                     </div>
                     <div
                       className={`p-5 rounded-3xl border flex flex-col justify-between ${isDark
-                          ? "bg-slate-800 border-slate-700"
-                          : "bg-blue-50/50 border-blue-100"
+                        ? "bg-slate-800 border-slate-700"
+                        : "bg-blue-50/50 border-blue-100"
                         }`}
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div
                           className={`p-2.5 rounded-xl shadow-sm ${isDark
-                              ? "bg-slate-700 text-blue-400"
-                              : "bg-white text-blue-500"
+                            ? "bg-slate-700 text-blue-400"
+                            : "bg-white text-blue-500"
                             }`}
                         >
                           <List size={20} />
@@ -1460,8 +1471,8 @@
                     <button
                       onClick={() => setIsBudgetOpen(false)}
                       className={`p-2 rounded-full ${isDark
-                          ? "bg-slate-700 text-slate-300"
-                          : "bg-slate-100 text-slate-500"
+                        ? "bg-slate-700 text-slate-300"
+                        : "bg-slate-100 text-slate-500"
                         }`}
                     >
                       <X size={20} />
@@ -1480,8 +1491,8 @@
                         value={tempBudget}
                         onChange={(e) => setTempBudget(e.target.value)}
                         className={`w-full p-4 text-2xl font-black rounded-2xl border-2 focus:outline-none transition-all ${isDark
-                            ? "bg-slate-700 border-slate-600 text-white focus:border-pink-500"
-                            : "bg-slate-50 border-slate-100 text-slate-800 focus:border-pink-500"
+                          ? "bg-slate-700 border-slate-600 text-white focus:border-pink-500"
+                          : "bg-slate-50 border-slate-100 text-slate-800 focus:border-pink-500"
                           }`}
                         placeholder="0"
                         autoFocus
@@ -1515,8 +1526,8 @@
                     <button
                       onClick={() => setIsFormVisible(false)}
                       className={`p-2 rounded-full transition-colors ${isDark
-                          ? "bg-slate-700 text-slate-300 hover:bg-slate-600"
-                          : "bg-slate-100 text-slate-500 hover:bg-slate-200"
+                        ? "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                        : "bg-slate-100 text-slate-500 hover:bg-slate-200"
                         }`}
                     >
                       <X size={20} />
@@ -1536,11 +1547,11 @@
                           setSelectedCategory("food");
                         }}
                         className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${formType === "expense"
-                            ? `${isDark
-                              ? "bg-slate-600 text-rose-400"
-                              : "bg-white text-rose-500"
-                            } shadow-sm`
-                            : "text-slate-400 hover:text-slate-500"
+                          ? `${isDark
+                            ? "bg-slate-600 text-rose-400"
+                            : "bg-white text-rose-500"
+                          } shadow-sm`
+                          : "text-slate-400 hover:text-slate-500"
                           }`}
                       >
                         {t("expense")}
@@ -1552,11 +1563,11 @@
                           setSelectedCategory("salary");
                         }}
                         className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${formType === "income"
-                            ? `${isDark
-                              ? "bg-slate-600 text-emerald-400"
-                              : "bg-white text-emerald-600"
-                            } shadow-sm`
-                            : "text-slate-400 hover:text-slate-500"
+                          ? `${isDark
+                            ? "bg-slate-600 text-emerald-400"
+                            : "bg-white text-emerald-600"
+                          } shadow-sm`
+                          : "text-slate-400 hover:text-slate-500"
                           }`}
                       >
                         {t("income")}
@@ -1578,8 +1589,8 @@
                           onChange={(e) => setAmount(e.target.value)}
                           placeholder="0"
                           className={`w-full p-4 pl-10 border-2 border-transparent rounded-2xl focus:outline-none text-3xl font-black transition-all ${isDark
-                              ? "bg-slate-700 text-white focus:bg-slate-600 focus:border-pink-500"
-                              : "bg-slate-50 text-slate-700 focus:bg-white focus:border-pink-300"
+                            ? "bg-slate-700 text-white focus:bg-slate-600 focus:border-pink-500"
+                            : "bg-slate-50 text-slate-700 focus:bg-white focus:border-pink-300"
                             }`}
                           autoFocus
                         />
@@ -1611,26 +1622,26 @@
                               type="button"
                               onClick={() => setSelectedCategory(cat.id)}
                               className={`flex flex-col items-center gap-2 p-3 rounded-2xl transition-all border-2 ${isSelected
-                                  ? `border-pink-500 ${isDark ? "bg-slate-600" : "bg-pink-50"
-                                  }`
-                                  : `${inactiveBorder} ${inactiveBg}`
+                                ? `border-pink-500 ${isDark ? "bg-slate-600" : "bg-pink-50"
+                                }`
+                                : `${inactiveBorder} ${inactiveBg}`
                                 }`}
                             >
                               <div
                                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isSelected
-                                    ? "bg-pink-200 text-pink-700"
-                                    : `${isDark
-                                      ? "bg-slate-600 text-slate-400"
-                                      : "bg-slate-100 text-slate-400"
-                                    }`
+                                  ? "bg-pink-200 text-pink-700"
+                                  : `${isDark
+                                    ? "bg-slate-600 text-slate-400"
+                                    : "bg-slate-100 text-slate-400"
+                                  }`
                                   }`}
                               >
                                 <Icon size={20} />
                               </div>
                               <span
                                 className={`text-[10px] font-bold ${isSelected
-                                    ? "text-pink-600"
-                                    : "text-slate-400"
+                                  ? "text-pink-600"
+                                  : "text-slate-400"
                                   }`}
                               >
                                 {label}
@@ -1652,8 +1663,8 @@
                         onChange={(e) => setText(e.target.value)}
                         placeholder={t("notePlaceholder")}
                         className={`w-full p-4 border-2 border-transparent rounded-2xl focus:outline-none font-medium transition-all ${isDark
-                            ? "bg-slate-700 text-white focus:bg-slate-600 focus:border-pink-500"
-                            : "bg-slate-50 text-slate-700 focus:bg-white focus:border-pink-300"
+                          ? "bg-slate-700 text-white focus:bg-slate-600 focus:border-pink-500"
+                          : "bg-slate-50 text-slate-700 focus:bg-white focus:border-pink-300"
                           }`}
                       />
                     </div>
@@ -1662,8 +1673,8 @@
                     <button
                       type="submit"
                       className={`w-full p-4 rounded-2xl font-bold text-white shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all active:scale-95 flex items-center justify-center gap-2 text-lg ${formType === "income"
-                          ? "bg-gradient-to-r from-emerald-400 to-teal-500 shadow-emerald-500/30"
-                          : "bg-gradient-to-r from-rose-400 to-pink-500 shadow-rose-500/30"
+                        ? "bg-gradient-to-r from-emerald-400 to-teal-500 shadow-emerald-500/30"
+                        : "bg-gradient-to-r from-rose-400 to-pink-500 shadow-rose-500/30"
                         }`}
                     >
                       <Plus size={24} strokeWidth={3} />
