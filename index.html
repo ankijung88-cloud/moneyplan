@@ -890,10 +890,14 @@
 
         const now = new Date();
 
+        // Remove commas from amount before saving
+        const numericAmount = parseFloat(amount.replace(/,/g, ''));
+        if (isNaN(numericAmount)) return;
+
         const newTransaction = {
           id: Math.floor(Math.random() * 100000000),
           text,
-          amount: +amount,
+          amount: numericAmount,
           type: formType,
           category: selectedCategory,
           currency: currency, // Use current display currency
@@ -924,6 +928,29 @@
         setText("");
         setAmount("");
         setIsFormVisible(true);
+      };
+
+      // Handle amount input with thousand separator formatting
+      const handleAmountChange = (e) => {
+        const value = e.target.value;
+        // Remove all non-numeric characters except decimal point
+        const numericValue = value.replace(/[^0-9.]/g, '');
+        // Prevent multiple decimal points
+        const parts = numericValue.split('.');
+        if (parts.length > 2) {
+          return; // Don't update if more than one decimal point
+        }
+        // Format with thousand separators
+        if (numericValue) {
+          const [integerPart, decimalPart] = parts;
+          const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          const formatted = decimalPart !== undefined
+            ? `${formattedInteger}.${decimalPart}`
+            : formattedInteger;
+          setAmount(formatted);
+        } else {
+          setAmount('');
+        }
       };
 
       const handleCameraCapture = (e) => {
@@ -1778,9 +1805,10 @@
                           {getCurrencySymbol()}
                         </span>
                         <input
-                          type="number"
+                          type="text"
+                          inputMode="decimal"
                           value={amount}
-                          onChange={(e) => setAmount(e.target.value)}
+                          onChange={handleAmountChange}
                           placeholder="0"
                           className={`w-full p-4 pl-10 border-2 border-transparent rounded-2xl focus:outline-none text-3xl font-black transition-all ${isDark
                             ? "bg-slate-700 text-white focus:bg-slate-600 focus:border-pink-500"
