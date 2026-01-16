@@ -2,12 +2,12 @@
   "name": "Budgeto - Expense Tracker",
   "short_name": "Budgeto",
   "description": "Smart expense tracking app with budget management and multi-language support",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#ec4899",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "scope": "./",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
@@ -65,7 +65,11 @@
       "type": "image/png"
     }
   ],
-  "categories": ["finance", "productivity", "utilities"],
+  "categories": [
+    "finance",
+    "productivity",
+    "utilities"
+  ],
   "lang": "en-US",
   "dir": "ltr"
 }

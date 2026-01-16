@@ -1,16 +1,16 @@
 // Service Worker for Budgeto PWA
-// Version 1.0.0
+// Version 1.1.0 - Fixed GitHub Pages paths
 
-const CACHE_NAME = 'budgeto-v1.0.0';
+const CACHE_NAME = 'budgeto-v1.1.0';
 const RUNTIME_CACHE = 'budgeto-runtime';
 
 // Files to cache immediately on install
 const PRECACHE_URLS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png',
+  './',
+  './index.html',
+  './manifest.json',
+  './icons/icon-192x192.png',
+  './icons/icon-512x512.png',
   'https://cdn.tailwindcss.com',
   'https://esm.sh/react@18.2.0',
   'https://esm.sh/react-dom@18.2.0/client',
@@ -51,10 +51,10 @@ self.addEventListener('activate', (event) => {
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
   // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin) && 
-      !event.request.url.startsWith('https://cdn.tailwindcss.com') &&
-      !event.request.url.startsWith('https://esm.sh') &&
-      !event.request.url.startsWith('https://unpkg.com')) {
+  if (!event.request.url.startsWith(self.location.origin) &&
+    !event.request.url.startsWith('https://cdn.tailwindcss.com') &&
+    !event.request.url.startsWith('https://esm.sh') &&
+    !event.request.url.startsWith('https://unpkg.com')) {
     return;
   }
 
@@ -82,7 +82,7 @@ self.addEventListener('fetch', (event) => {
       }).catch((error) => {
         console.error('[SW] Fetch failed:', error);
         // Return a custom offline page if available
-        return caches.match('/index.html');
+        return caches.match('./index.html');
       });
     })
   );
