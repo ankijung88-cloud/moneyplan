@@ -963,9 +963,23 @@
       };
 
       const toggleLanguage = () => {
-        if (language === "th") setLanguage("en");
-        else if (language === "en") setLanguage("ko");
-        else setLanguage("th");
+        let newLanguage;
+        let newCurrency;
+
+        if (language === "th") {
+          newLanguage = "en";
+          newCurrency = "USD";
+        } else if (language === "en") {
+          newLanguage = "ko";
+          newCurrency = "KRW";
+        } else {
+          newLanguage = "th";
+          newCurrency = "THB";
+        }
+
+        setLanguage(newLanguage);
+        setCurrency(newCurrency);
+        setTransactionCurrency(newCurrency); // Also update transaction form currency
       };
 
       // SVG Chart
