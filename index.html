@@ -779,6 +779,15 @@
       // Helper: Get Translated Text
       const t = (key) => TRANSLATIONS[language][key];
 
+      // Helper: Format Currency with thousand separator
+      const formatCurrency = (amount) => {
+        const number = typeof amount === 'string' ? parseFloat(amount) : amount;
+        return number.toLocaleString('ko-KR', {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2
+        });
+      };
+
       // Helper: Get Date Locale
       const getDateLocale = () => {
         if (language === "ko") return "ko-KR";
@@ -1042,7 +1051,7 @@
                   {t("totalBalance")}
                 </p>
                 <h1 className="text-4xl font-black tracking-tight mb-4">
-                  ฿{globalBalance}
+                  ₩{formatCurrency(globalBalance)}
                 </h1>
 
                 {/* Month Navigator */}
@@ -1083,10 +1092,10 @@
 
                   <div className="flex justify-between text-xs text-white/90 font-bold mb-2 relative z-10">
                     <span className="flex items-center gap-1">
-                      <Target size={12} /> {t("budget")}: ฿{budget}
+                      <Target size={12} /> {t("budget")}: ₩{formatCurrency(budget)}
                     </span>
                     <span>
-                      {t("remaining")}: ฿{remainingBudget}
+                      {t("remaining")}: ₩{formatCurrency(remainingBudget)}
                     </span>
                   </div>
                   <div className="h-3 bg-black/20 rounded-full overflow-hidden relative z-10">
@@ -1121,13 +1130,13 @@
                   <p className="text-white/90 text-xs uppercase tracking-wider mb-1 font-bold">
                     {t("income")}
                   </p>
-                  <p className="text-lg font-bold">฿{monthlyIncome}</p>
+                  <p className="text-lg font-bold">₩{formatCurrency(monthlyIncome)}</p>
                 </div>
                 <div className="flex-1 bg-white/20 p-3 rounded-2xl backdrop-blur-md border border-white/20">
                   <p className="text-white/90 text-xs uppercase tracking-wider mb-1 font-bold">
                     {t("expense")}
                   </p>
-                  <p className="text-lg font-bold">฿{monthlyExpense}</p>
+                  <p className="text-lg font-bold">₩{formatCurrency(monthlyExpense)}</p>
                 </div>
               </div>
             </div>
@@ -1199,7 +1208,7 @@
                           }`}
                       >
                         {monthlyIncomeNum - monthlyExpenseNum >= 0 ? "+" : ""}
-                        ฿{(monthlyIncomeNum - monthlyExpenseNum).toFixed(2)}
+                        ₩{formatCurrency((monthlyIncomeNum - monthlyExpenseNum).toFixed(2))}
                       </p>
                     </div>
                   </div>
@@ -1292,8 +1301,8 @@
                                   : "text-rose-500"
                                   }`}
                               >
-                                {transaction.type === "income" ? "+" : "-"}฿
-                                {Math.abs(transaction.amount)}
+                                {transaction.type === "income" ? "+" : "-"}₩
+                                {formatCurrency(Math.abs(transaction.amount))}
                               </span>
                               <button
                                 onClick={() =>
@@ -1360,7 +1369,7 @@
                           {highestExpense.text}
                         </p>
                         <p className="text-sm font-bold text-rose-500">
-                          -฿{highestExpense.amount}
+                          -₩{formatCurrency(highestExpense.amount)}
                         </p>
                       </div>
                     </div>
