@@ -751,6 +751,42 @@
         return () => clearInterval(interval);
       }, []);
 
+      // Helper Functions (Must be defined before useMemo)
+
+      // Helper: Get Translated Text
+      const t = (key) => TRANSLATIONS[language][key];
+
+      // Helper: Convert amount between currencies
+      const convertAmount = (amount, fromCurrency = 'KRW', toCurrency = currency) => {
+        if (fromCurrency === toCurrency) return amount;
+        // Convert to USD first, then to target currency
+        const amountInUSD = amount / exchangeRates[fromCurrency];
+        return amountInUSD * exchangeRates[toCurrency];
+      };
+
+      // Helper: Format Currency with thousand separator
+      const formatCurrency = (amount, currencyCode = currency) => {
+        const number = typeof amount === 'string' ? parseFloat(amount) : amount;
+        const decimals = CURRENCIES[currencyCode]?.decimals || 2;
+        return number.toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      };
+
+      // Helper: Get currency symbol
+      const getCurrencySymbol = () => {
+        if (!currency || !CURRENCIES[currency]) return '₩';
+        return CURRENCIES[currency].symbol;
+      };
+
+      // Helper: Get Date Locale
+      const getDateLocale = () => {
+        if (language === "ko") return "ko-KR";
+        if (language === "th") return "th-TH";
+        return "en-US";
+      };
+
       // Derived calculations
 
       // 1. Filter Transactions by Month
@@ -828,41 +864,6 @@
           ((monthlyIncomeNum - monthlyExpenseNum) / monthlyIncomeNum) * 100
         ).toFixed(0);
       }, [monthlyIncomeNum, monthlyExpenseNum]);
-
-      // Helper: Get Translated Text
-      const t = (key) => TRANSLATIONS[language][key];
-
-      // Helper: Convert amount between currencies
-      const convertAmount = (amount, fromCurrency = 'KRW', toCurrency = currency) => {
-        if (fromCurrency === toCurrency) return amount;
-        // Convert to USD first, then to target currency
-        const amountInUSD = amount / exchangeRates[fromCurrency];
-        return amountInUSD * exchangeRates[toCurrency];
-      };
-
-      // Helper: Format Currency with thousand separator
-      const formatCurrency = (amount, currencyCode = currency) => {
-        const number = typeof amount === 'string' ? parseFloat(amount) : amount;
-        const decimals = CURRENCIES[currencyCode]?.decimals || 2;
-        return number.toLocaleString('en-US', {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals
-        });
-      };
-
-      // Helper: Get currency symbol
-      const getCurrencySymbol = () => {
-        if (!currency || !CURRENCIES[currency]) return '₩';
-        return CURRENCIES[currency].symbol;
-      };
-
-
-      // Helper: Get Date Locale
-      const getDateLocale = () => {
-        if (language === "ko") return "ko-KR";
-        if (language === "th") return "th-TH";
-        return "en-US";
-      };
 
       // Month Navigation Handlers
       const prevMonth = () => {
