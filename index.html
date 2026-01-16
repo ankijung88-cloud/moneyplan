@@ -698,7 +698,6 @@
       const [amount, setAmount] = useState("");
       const [formType, setFormType] = useState("expense");
       const [selectedCategory, setSelectedCategory] = useState("food");
-      const [transactionCurrency, setTransactionCurrency] = useState("KRW"); // Currency for new transaction
       const [isFormVisible, setIsFormVisible] = useState(false);
       const [activeTab, setActiveTab] = useState("transactions");
 
@@ -893,7 +892,7 @@
           amount: +amount,
           type: formType,
           category: selectedCategory,
-          currency: transactionCurrency, // Store currency with transaction
+          currency: currency, // Use current display currency
           timestamp: now.getTime(),
           date: now.toLocaleDateString(getDateLocale(), {
             month: "short",
@@ -918,7 +917,6 @@
         setSelectedCategory("food");
         setText("");
         setAmount("");
-        setTransactionCurrency("KRW"); // Reset to KRW default
         setIsFormVisible(true);
       };
 
@@ -979,7 +977,6 @@
 
         setLanguage(newLanguage);
         setCurrency(newCurrency);
-        setTransactionCurrency(newCurrency); // Also update transaction form currency
       };
 
       // SVG Chart
@@ -1770,38 +1767,21 @@
                       <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
                         {t("amount")}
                       </label>
-                      <div className="flex gap-2">
-                        <div className="relative flex-1">
-                          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xl">
-                            {CURRENCIES[transactionCurrency].symbol}
-                          </span>
-                          <input
-                            type="number"
-                            value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
-                            placeholder="0"
-                            className={`w-full p-4 pl-10 border-2 border-transparent rounded-2xl focus:outline-none text-3xl font-black transition-all ${isDark
-                              ? "bg-slate-700 text-white focus:bg-slate-600 focus:border-pink-500"
-                              : "bg-slate-50 text-slate-700 focus:bg-white focus:border-pink-300"
-                              }`}
-                            autoFocus
-                          />
-                        </div>
-                        {/* Currency Selector Dropdown */}
-                        <select
-                          value={transactionCurrency}
-                          onChange={(e) => setTransactionCurrency(e.target.value)}
-                          className={`p-4 border-2 border-transparent rounded-2xl focus:outline-none font-bold transition-all ${isDark
+                      <div className="relative">
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xl">
+                          {getCurrencySymbol()}
+                        </span>
+                        <input
+                          type="number"
+                          value={amount}
+                          onChange={(e) => setAmount(e.target.value)}
+                          placeholder="0"
+                          className={`w-full p-4 pl-10 border-2 border-transparent rounded-2xl focus:outline-none text-3xl font-black transition-all ${isDark
                             ? "bg-slate-700 text-white focus:bg-slate-600 focus:border-pink-500"
                             : "bg-slate-50 text-slate-700 focus:bg-white focus:border-pink-300"
                             }`}
-                        >
-                          {Object.entries(CURRENCIES).map(([code, info]) => (
-                            <option key={code} value={code}>
-                              {info.flag} {code}
-                            </option>
-                          ))}
-                        </select>
+                          autoFocus
+                        />
                       </div>
                     </div>
 
