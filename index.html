@@ -851,7 +851,10 @@
       };
 
       // Helper: Get currency symbol
-      const getCurrencySymbol = () => CURRENCIES[currency]?.symbol || '₩';
+      const getCurrencySymbol = () => {
+        if (!currency || !CURRENCIES[currency]) return '₩';
+        return CURRENCIES[currency].symbol;
+      };
 
 
       // Helper: Get Date Locale
