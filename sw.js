@@ -1,7 +1,7 @@
 // Service Worker for Budgeto PWA
-// Version 1.1.0 - Fixed GitHub Pages paths
+// Version 1.2.0 - Forced cache refresh and Babel fix
 
-const CACHE_NAME = 'budgeto-v1.1.0';
+const CACHE_NAME = 'budgeto-v1.2.0';
 const RUNTIME_CACHE = 'budgeto-runtime';
 
 // Files to cache immediately on install
@@ -11,11 +11,10 @@ const PRECACHE_URLS = [
   './manifest.json',
   './icons/icon-192x192.png',
   './icons/icon-512x512.png',
-  'https://cdn.tailwindcss.com',
   'https://esm.sh/react@18.2.0',
   'https://esm.sh/react-dom@18.2.0/client',
   'https://esm.sh/lucide-react@0.263.1',
-  'https://unpkg.com/@babel/standalone/babel.min.js'
+  'https://unpkg.com/@babel/standalone@7.24.7/babel.min.js'
 ];
 
 // Install event - cache static resources
